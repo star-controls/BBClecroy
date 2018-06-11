@@ -20,5 +20,5 @@ class watchdog():
     print "Timeout in watchdog"
     #set all channels as invalid
     for ibd in range(len(self.bdlist)):
-      for ich in range(len(self.bdlist[ibd].chlist)):
-        self.bdlist[ibd].chlist[ich].set_invalid()
+      for ich in range(len(self.bdlist[ibd].channels)):
+        self.bdlist[ibd].channels[ich].set_invalid()

@@ -1,4 +1,4 @@
-from softioc import builder, softioc
+from softioc import builder, softioc, alarm
 import epics
 #!file:///usr/local/epics/modules/pythonIoc/docs/html/softioc.html
 #http://cars9.uchicago.edu/software/python/pyepics3/
@@ -42,6 +42,10 @@ class Channels:
     #self.calc_hihi.put(self.hihi)
     softioc.dbpf(self.calc.name+".HIGH", str(self.high))
     softioc.dbpf(self.calc.name+".HIHI", str(self.hihi))
+    
+  def set_invalid(self):
+    self.pv_vmon.set_alarm(alarm.INVALID_ALARM,alarm.TIMEOUT_ALARM)
+    self.pv_current.set_alarm(alarm.INVALID_ALARM,alarm.TIMEOUT_ALARM)
     
 
 

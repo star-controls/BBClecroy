@@ -6,6 +6,7 @@ from VPDdemandclass import VPDdemand
 from ZDCdemandclass import ZDCdemand
 from PPHVdemandclass import PPHVdemand
 from leCroy_com import lecroy_com
+from watchdog import watchdog
 import time
 import threading
 
@@ -26,11 +27,14 @@ for i in range (16):
     Boards.append(Board(i,relay))
 
 #The boards created above run through as an object
-#for these four different demands
+#for these four different demand voltages
 BBC_demands = BBCdemand(Boards)
 VPD_demands = VPDdemand(Boards)
 ZDC_demands = ZDCdemand(Boards)
 PPHV_demands = PPHVdemand(Boards)
+
+watch_dog = watchdog(10,Boards)
+
 print "Hi from myApp"
 
 
@@ -83,6 +87,9 @@ def do_read():
     readstatus.set(0)
   if status[7].find("on") >= 0:
     readstatus.set(1)
+
+   
+  watch_dog.reset()
     
   #for i in range(len(status)):
     #print i, status[i]
@@ -91,8 +98,9 @@ def do_runreading():
   #function to read through boards and their channels
   #(with voltage and current) every second
   while True:
-    do_read()
     time.sleep(1)
+    do_read()
+
 
 def do_startthread():
   #print Boards[13].channels[02].calc_pv.get()##prints out 'None'
@@ -101,6 +109,7 @@ def do_startthread():
   PPHV_demands.turnoff_PPHV(1)
   ZDC_demands.turnoff_ZDCSMD(1)
   ZDC_demands.turnoff_ZDC(1)
+  watch_dog.start()
   t = threading.Thread(target=do_runreading)
   t.daemon = True
   t.start()
