@@ -11,6 +11,8 @@
 #   on
 #   off
 #   set ramp (s,c) v
+#   show ramp (s,c)
+#   show ramp (s,c1-c2)
 #
 # log file: lecroyLog.txt, contains all commands issued to simulation with timestamp
 #
@@ -139,6 +141,49 @@ def get_bdch(line, bdch_list):
   bdch_list.append(ch_end)
   return True
 
+
+#_____________________________________________________________________________
+def do_show_ramp(rel, line):
+
+  #read ramp for a given channel
+  #returns True when successfully executed
+
+  #discard 'show' word for get_bdch call
+  line = line[line.find("ramp"):]
+
+  #get board and channel number
+  bdch_list = []
+  if get_bdch(line, bdch_list) == False:
+    return False
+  ibd = bdch_list[0]
+  #determine whether to read single channel or range of channels
+  if len(bdch_list) == 2:
+    ch_start = bdch_list[1]
+    ch_end = ch_start
+  else:
+    ch_start = bdch_list[1]
+    ch_end = bdch_list[2]
+
+  #put ramp for all requested channels
+  for ich in range(ch_start, ch_end+1):
+    read_chan_ramp(rel, ibd, ich)
+
+  return True
+
+#_____________________________________________________________________________
+def read_chan_ramp(rel, ibd, ich):
+
+  if (ibd == 7 or ibd == 9) and ich > 7:
+    return True
+
+  if ibd == 4 or ibd == 8 or ibd == 10 or ibd == 11:
+    return True
+
+  resp = " ({0:2d},{1:2d}) {2:4.0f}".format(ibd, ich, ramp[ibd,ich])
+
+  rel.write(resp+outterm)
+
+  return True
 
 #_____________________________________________________________________________
 def do_read(rel, line):
@@ -342,6 +387,9 @@ def cmdread(rel, line):
 
   elif line.startswith("set ramp ("):
     stat = do_set_ramp(rel, line)
+
+  elif line.startswith("show ramp ("):
+    stat = do_show_ramp(rel, line)
 
   elif line == "on":
     stat = do_on(rel, line)
