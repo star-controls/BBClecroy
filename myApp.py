@@ -11,7 +11,7 @@ import time
 import threading
 
 
-port = "/dev/pts/3"
+port = "/dev/pts/1"
 #port = "/dev/ttyS2"
 
 #open serial connection
