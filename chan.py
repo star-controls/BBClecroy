@@ -29,6 +29,7 @@ class Channels:
     self.calc.HIGH = self.high
     self.calc.HHSV = "MAJOR"
     self.calc.HSV = "MINOR"
+    self.ramprate = builder.aOut(pvname+"ramprate",on_update=self.set_ramp, initial_value=100) 
     #print self.calc.name
     #self.calc_high = epics.PV(self.calc.name+".HIGH")
     #self.calc_hihi = epics.PV(self.calc.name+".HIHI")
@@ -46,7 +47,10 @@ class Channels:
   def set_invalid(self):
     self.pv_vmon.set_alarm(alarm.INVALID_ALARM,alarm.TIMEOUT_ALARM)
     self.pv_current.set_alarm(alarm.INVALID_ALARM,alarm.TIMEOUT_ALARM)
-    
+
+  def set_ramp(self, val):
+    command = "set ramp ({0:d},{1:d}) {2:f}".format(self.BoardID, self.chanID, val)
+    self.relay.put_cmd(command)    
 
 
 

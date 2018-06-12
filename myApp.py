@@ -6,6 +6,7 @@ from VPDdemandclass import VPDdemand
 from ZDCdemandclass import ZDCdemand
 from PPHVdemandclass import PPHVdemand
 from leCroy_com import lecroy_com
+from demandramprateclass import demandramprate
 from watchdog import watchdog
 import time
 import threading
@@ -32,6 +33,8 @@ BBC_demands = BBCdemand(Boards)
 VPD_demands = VPDdemand(Boards)
 ZDC_demands = ZDCdemand(Boards)
 PPHV_demands = PPHVdemand(Boards)
+
+set_ramprate = demandramprate(Boards)
 
 watch_dog = watchdog(10,Boards)
 
