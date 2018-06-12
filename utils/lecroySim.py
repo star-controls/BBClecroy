@@ -10,6 +10,7 @@
 #   show status
 #   on
 #   off
+#   set ramp (s,c) v
 #
 # log file: lecroyLog.txt, contains all commands issued to simulation with timestamp
 #
@@ -23,7 +24,7 @@ import time
 import threading
 
 #name of serial port on the side of lecroy
-port = "/dev/pts/2"
+port = "/dev/pts/7"
 
 outterm="\r\n"
 
@@ -98,14 +99,12 @@ def simTask():
     time.sleep(0.1)
 
 #_____________________________________________________________________________
-def do_read(rel, line):
+def get_bdch(line, bdch_list):
+  #get board and channel number, sets list of board number and then channel
+  #number(s)
 
-  #read a given channel
-  #returns True when successfully executed
-
-  #get board and channel number
-  line = line[6:-1]
-  bdch = line.split(",")
+  lineW = line.split(" ")
+  bdch = lineW[1][1:-1].split(",")
   #get board number
   try:
     ibd = int(bdch[0])
@@ -114,7 +113,9 @@ def do_read(rel, line):
   #verify board range
   if ibd < 0 or ibd > 15:
     return False
-  #determine whether to read single channel or range of channels
+  #put board number to output list
+  bdch_list.append(ibd)
+  #determine whether to get single channel or range of channels
   if bdch[1].find("-") >= 0:
     ch_ran = bdch[1].split("-")
     try:
@@ -133,6 +134,30 @@ def do_read(rel, line):
     return False
   if ch_end < 0 or ch_end > 15:
     return False
+  #put start and end channel to output list
+  bdch_list.append(ch_start)
+  bdch_list.append(ch_end)
+  return True
+
+
+#_____________________________________________________________________________
+def do_read(rel, line):
+
+  #read a given channel
+  #returns True when successfully executed
+
+  #get board and channel number
+  bdch_list = []
+  if get_bdch(line, bdch_list) == False:
+    return False
+  ibd = bdch_list[0]
+  #determine whether to read single channel or range of channels
+  if len(bdch_list) == 2:
+    ch_start = bdch_list[1]
+    ch_end = ch_start
+  else:
+    ch_start = bdch_list[1]
+    ch_end = bdch_list[2]
 
   #form the output to serial relay
   rel.write("   Channel    Demand   Voltage   Current"+outterm)
@@ -203,17 +228,50 @@ def read_chan(rel, ibd, ich):
   return True
 
 #_____________________________________________________________________________
+def do_set_ramp(rel, line):
+
+  #set ramp rate for a given channel
+  #returns True when successfully executed
+
+  #discard 'set' word for get_bdch call
+  line = line[line.find("ramp"):]
+
+  #get board and channel number and ramp rate
+  bdch_list = []
+  if get_bdch(line, bdch_list) == False:
+    return False
+  ibd = bdch_list[0]
+  ich = bdch_list[1]
+  #now proceed to ramp rate
+  lineW = line.split(" ")
+  try:
+    ramp_val = float(lineW[2])
+  except:
+    return False
+
+  #put ramp rate to array
+  try:
+    ramp[ibd,ich] = ramp_val
+  except:
+    return False
+
+  return True
+
+#_____________________________________________________________________________
 def do_write(rel, line):
 
   #write demand voltage to a given channel
   #returns True when successfully executed
 
   #get board and channel number and demand voltage
+  bdch_list = []
+  if get_bdch(line, bdch_list) == False:
+    return False
+  ibd = bdch_list[0]
+  ich = bdch_list[1]
+  #now proceed to voltage
   lineW = line.split(" ")
-  bdch = lineW[1][1:-1].split(",")
   try:
-    ibd = int(bdch[0])
-    ich = int(bdch[1])
     demvolt = float(lineW[2])
   except:
     return False
@@ -222,7 +280,7 @@ def do_write(rel, line):
   if demvolt > 0 or demvolt < vmax:
     return False
 
-  #put demand and measured voltage to arrays
+  #put demand voltage to array
   try:
     dem[ibd,ich] = demvolt
   except:
@@ -281,6 +339,9 @@ def cmdread(rel, line):
 
   elif line.startswith("write ("):
     stat = do_write(rel, line)
+
+  elif line.startswith("set ramp ("):
+    stat = do_set_ramp(rel, line)
 
   elif line == "on":
     stat = do_on(rel, line)
