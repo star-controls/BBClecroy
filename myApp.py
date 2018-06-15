@@ -12,7 +12,7 @@ import time
 import threading
 
 
-port = "/dev/pts/1"
+port = "/dev/pts/4"
 #port = "/dev/ttyS2"
 
 #open serial connection
@@ -97,12 +97,17 @@ def do_read():
   #for i in range(len(status)):
     #print i, status[i]
 
+
+
 def do_runreading():
   #function to read through boards and their channels
   #(with voltage and current) every second
   while True:
     time.sleep(1)
-    do_read()
+    try:
+      do_read()
+    except: 
+      print "Some error has occured"
 
 
 def do_startthread():

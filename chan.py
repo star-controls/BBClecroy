@@ -31,18 +31,18 @@ class Channels:
     self.calc.HSV = "MINOR"
     self.ramprate = builder.aOut(pvname+"ramprate",on_update=self.set_ramp, initial_value=100) 
     #print self.calc.name
-    #self.calc_high = epics.PV(self.calc.name+".HIGH")
-    #self.calc_hihi = epics.PV(self.calc.name+".HIHI")
+    self.calc_high = epics.PV(self.calc.name+".HIGH")
+    self.calc_hihi = epics.PV(self.calc.name+".HIHI")
 		
   def write_voltage(self, val):
     command = "write ({0:d},{1:d}) {2:f}".format(self.BoardID, self.chanID, (-1)*val)
     self.relay.put_cmd(command)
 
   def reset_calc_limits(self):
-    #self.calc_high.put(self.high)
-    #self.calc_hihi.put(self.hihi)
-    softioc.dbpf(self.calc.name+".HIGH", str(self.high))
-    softioc.dbpf(self.calc.name+".HIHI", str(self.hihi))
+    self.calc_high.put(self.high)
+    self.calc_hihi.put(self.hihi)
+    #softioc.dbpf(self.calc.name+".HIGH", str(self.high))
+    #softioc.dbpf(self.calc.name+".HIHI", str(self.hihi))
     
   def set_invalid(self):
     self.pv_vmon.set_alarm(alarm.INVALID_ALARM,alarm.TIMEOUT_ALARM)

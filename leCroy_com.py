@@ -53,18 +53,22 @@ class lecroy_com:
   #_____________________________________________________________________________
   def run_cmd(self, cmd):
     #insert the command
-    cmd += self.outterm
-    for char in cmd:
-      self.relay.write( char )
-      self.relay.read()
-    #get response of the command
-    resp = ""
-    char = ""
-    #response loop
-    while char != ">":
-     #read character from serial line
-     char = self.relay.read()
-     #append the character to response string
-     resp += char
-    #return the response
-    return resp
+    try:
+      cmd += self.outterm
+      for char in cmd:
+        self.relay.write( char )
+        self.relay.read()
+      #get response of the command
+      resp = ""
+      char = ""
+      #response loop
+      while char != ">":
+        #read character from serial line
+        char = self.relay.read()
+        #append the character to response string
+        resp += char
+        #return the response
+      return resp
+    except:
+      print "Error with cmd occured"
+      return ""
