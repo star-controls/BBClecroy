@@ -26,7 +26,7 @@ import time
 import threading
 
 #name of serial port on the side of lecroy
-port = "/dev/pts/7"
+port = "/tmp/ttyV0"
 
 outterm="\r\n"
 
@@ -434,7 +434,17 @@ def cmdloop(rel):
   #line loop
   while True:
     #read character from serial line
-    char = rel.read()
+    try:
+      char = rel.read()
+    except:
+      print "Exception: serial connection lost"
+      time.sleep(1)
+      rel.close()
+      try:
+        rel.open()
+      except:
+        print "Can not open serial port"
+      continue
 
     #return
     if char == "\r":
