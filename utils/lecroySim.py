@@ -26,7 +26,11 @@ import time
 import threading
 
 #name of serial port on the side of lecroy
+<<<<<<< HEAD
 port = "/dev/pts/5"
+=======
+port = "/tmp/ttyV0"
+>>>>>>> master
 
 outterm="\r\n"
 
@@ -421,7 +425,7 @@ def cmdloop(rel):
 
   #function to maintain the command prompt
 
-  prompt="lecroySim> "
+  prompt=" 0> "
 
   rel.write(outterm+prompt)
 
@@ -434,7 +438,17 @@ def cmdloop(rel):
   #line loop
   while True:
     #read character from serial line
-    char = rel.read()
+    try:
+      char = rel.read()
+    except:
+      print "Exception: serial connection lost"
+      time.sleep(1)
+      rel.close()
+      try:
+        rel.open()
+      except:
+        print "Can not open serial port"
+      continue
 
     #return
     if char == "\r":
