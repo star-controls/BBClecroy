@@ -26,11 +26,9 @@ import time
 import threading
 
 #name of serial port on the side of lecroy
-<<<<<<< HEAD
 port = "/dev/pts/5"
-=======
-port = "/tmp/ttyV0"
->>>>>>> master
+#port = "/tmp/ttyV0"
+
 
 outterm="\r\n"
 
