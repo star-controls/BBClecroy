@@ -9,6 +9,11 @@ class VPDdemand:
     #pv created to turn VPD voltages to 0   
     self.turnvoltageoff = builder.boolOut("turnoffVPD",ZNAM = 0, ONAM = 1, HIGH = 0.1, on_update=self.turnoff_VPD)
    
+    self.dictionary = {}
+    self.dictionary[1] = ["file_name", "description"]
+    self.dictionary[2] = ["file_name", "description"]
+    self.activefile = 1
+    #self.chooseFile = builder.longOut("VPD_setting", initial_value = self.activefile , on_update = self.request_change)
   def place_voltages(self,x):
     if x == 0:
       return
@@ -36,6 +41,9 @@ class VPDdemand:
       #trigger an alarm
       softioc.dbpf(self.boardList[BoardID].channels[chanID].calc.name+".HIGH", "300")
       softioc.dbpf(self.boardList[BoardID].channels[chanID].calc.name+".HIHI", "300")
+
+  #def request_change:
+    #return
 
   def turnoff_VPD(self,y):
     if y == 0:

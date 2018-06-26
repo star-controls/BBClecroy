@@ -1,0 +1,3 @@
+filename,description
+data/demand_run18_midgain_polB_20180326.bbc,Default HV setting (Isobar)
+data/demand_fixed_highgain_polB_20180419.bbc,2nd HV setting (Fixed target)

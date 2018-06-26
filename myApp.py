@@ -8,12 +8,13 @@ from PPHVdemandclass import PPHVdemand
 from leCroy_com import lecroy_com
 from demandramprateclass import demandramprate
 from watchdog import watchdog
+from datetime import datetime
 import time
 import threading
 
 
-port = "/dev/pts/4"
-#port = "/dev/ttyS2"
+#port = "/dev/pts/4"
+port = "/tmp/ttyV1"
 
 #open serial connection
 relay = lecroy_com(port)
@@ -106,12 +107,22 @@ def do_runreading():
     time.sleep(1)
     try:
       do_read()
-    except: 
-      print "Some error has occured"
+    except:
+      relay.relay.close()
+      watch_dog.handler()
+      print "Some error has occured" , str(datetime.now())
+      try:
+        relay.relay.open()
+        print "Serial connection was restored" , str(datetime.now())
+      except:
+        print "No serial connection" , str(datetime.now())
+        
 
 
 def do_startthread():
   #print Boards[13].channels[02].calc_pv.get()##prints out 'None'
+  BBC_demands.reload_dictionary()
+  BBC_demands.request_change(1)
   BBC_demands.place_voltages(1)
   VPD_demands.turnoff_VPD(1)
   PPHV_demands.turnoff_PPHV(1)

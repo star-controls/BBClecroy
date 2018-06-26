@@ -26,8 +26,8 @@ import time
 import threading
 
 #name of serial port on the side of lecroy
-port = "/dev/pts/5"
-#port = "/tmp/ttyV0"
+#port = "/dev/pts/5"
+port = "/tmp/ttyV0"
 
 
 outterm="\r\n"

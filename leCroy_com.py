@@ -1,5 +1,6 @@
 #serial connection to lecory power supply
 
+from datetime import datetime
 import serial
 import time
 
@@ -41,7 +42,7 @@ class lecroy_com:
   def put_cmd_sync(self, cmd):
     #synchronous command, expected to run at regular intervals
     self.busy = True
-    #wait for asynchronous command in proggress
+    #wait for asynchronous command in progress
     while self.asyn == True: time.sleep(0.1)
     #process the command, capture the response
     resp = self.run_cmd(cmd)
@@ -70,5 +71,5 @@ class lecroy_com:
         #return the response
       return resp
     except:
-      print "Error with cmd occured"
+      print "Error with cmd occured" , str(datetime.now())
       return ""
