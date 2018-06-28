@@ -41,9 +41,12 @@ dem = np.zeros((nbd,nch), dtype=np.float)
 vol = np.zeros((nbd,nch), dtype=np.float)
 current = np.empty(nch, dtype=np.float)
 ramp = np.zeros((nbd,nch), dtype=np.float)
+imax = np.zeros((nbd,nch), dtype=np.float)
+acmax = np.zeros((nbd,nch), dtype=np.float)
+vmax = np.zeros((nbd,nch), dtype=np.float)
 
 #maximal negative voltage
-vmax = -3100
+#vmax = -3100
 
 #correction to measured voltage
 delt = 0.87
@@ -51,7 +54,12 @@ delt = 0.87
 for ibd in range(nbd):
   for ich in range(nch):
     vol[ibd,ich] = dem[ibd,ich] + delt
-    ramp[ibd,ich] = 100.;
+    ramp[ibd,ich] = 100.
+    imax[ibd,ich] = 1023.
+    acmax[ibd,ich] = 16383.
+    vmax[ibd,ich] = 2500.
+    if ibd == 7 or ibd == 9:
+      vmax[ibd,ich] = 5600.
 
 #voltage on/off
 hvOn = False
@@ -143,6 +151,61 @@ def get_bdch(line, bdch_list):
   bdch_list.append(ch_end)
   return True
 
+#_____________________________________________________________________________
+def do_show_limits(rel, line):
+
+  #read ramp for a given channel
+  #returns True when successfully executed
+
+  rel.write(" 1443P Hardware current limit is 2550 uA"+outterm)
+  rel.write(" 1443N Hardware current limit is 2550 uA"+outterm)
+  rel.write(outterm)
+  rel.write(" Limits by Channel(V, V/s, uA):"+outterm)
+  rel.write("  Channel   Imax(H)   ACmax(H)  Ramp(S)   Vmax(S)"+outterm)
+
+  #discard 'show' word for get_bdch call
+  line = line[line.find("limits"):]
+
+  #get board and channel number
+  bdch_list = []
+  if get_bdch(line, bdch_list) == False:
+    return False
+  ibd = bdch_list[0]
+  #determine whether to read single channel or range of channels
+  if len(bdch_list) == 2:
+    ch_start = bdch_list[1]
+    ch_end = ch_start
+  else:
+    ch_start = bdch_list[1]
+    ch_end = bdch_list[2]
+
+  #put limits for all requested channels
+  for ich in range(ch_start, ch_end+1):
+    read_chan_limits(rel, ibd, ich)
+
+  return True
+
+#_____________________________________________________________________________
+def read_chan_limits(rel, ibd, ich):
+
+  if (ibd == 7 or ibd == 9) and ich > 7:
+    return True
+
+  if ibd == 4 or ibd == 8 or ibd == 10 or ibd == 11:
+    return True
+
+  if (ibd == 7 or ibd == 9):
+    resp = "  ({0:2d},{1:2d})   {2:4.0f}     ".format(ibd, ich, imax[ibd,ich])
+    resp += "{0:5.0f}           ".format(acmax[ibd,ich])
+    resp += "{0:3.0f}      {1:4.0f}".format(ramp[ibd,ich], vmax[ibd,ich])
+  else:
+    resp = "  ({0:2d},{1:2d})".format(ibd, ich)
+    resp += "               --           "
+    resp += "{0:3.0f}      {1:4.0f}".format(ramp[ibd,ich], vmax[ibd,ich])
+
+  rel.write(resp+outterm)
+
+  return True
 
 #_____________________________________________________________________________
 def do_show_ramp(rel, line):
@@ -324,7 +387,7 @@ def do_write(rel, line):
     return False
 
   #check the range of demand voltage
-  if demvolt > 0 or demvolt < vmax:
+  if demvolt > 0 or demvolt < -vmax[ibd,ich]:
     return False
 
   #put demand voltage to array
@@ -392,6 +455,9 @@ def cmdread(rel, line):
 
   elif line.startswith("show ramp ("):
     stat = do_show_ramp(rel, line)
+
+  elif line.startswith("show limits ("):
+    stat = do_show_limits(rel, line)
 
   elif line == "on":
     stat = do_on(rel, line)
