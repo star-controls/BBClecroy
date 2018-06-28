@@ -13,6 +13,9 @@
 #   set ramp (s,c) v
 #   show ramp (s,c)
 #   show ramp (s,c1-c2)
+#   show limits (s,c)
+#   show limits (s,c1-c2)
+#   set voltage limit (s,c) v
 #
 # log file: lecroyLog.txt, contains all commands issued to simulation with timestamp
 #
@@ -368,6 +371,36 @@ def do_set_ramp(rel, line):
   return True
 
 #_____________________________________________________________________________
+def do_set_voltage_limit(rel, line):
+
+  #set voltage limit for a given channel
+  #returns True when successfully executed
+
+  #discard 'set' word for get_bdch call
+  line = line[line.find("limit"):]
+
+  #get board and channel number and ramp rate
+  bdch_list = []
+  if get_bdch(line, bdch_list) == False:
+    return False
+  ibd = bdch_list[0]
+  ich = bdch_list[1]
+  #now proceed to ramp rate
+  lineW = line.split(" ")
+  try:
+    vmax_val = float(lineW[2])
+  except:
+    return False
+
+  #put voltage limit to array
+  try:
+    vmax[ibd,ich] = vmax_val
+  except:
+    return False
+
+  return True
+
+#_____________________________________________________________________________
 def do_write(rel, line):
 
   #write demand voltage to a given channel
@@ -458,6 +491,9 @@ def cmdread(rel, line):
 
   elif line.startswith("show limits ("):
     stat = do_show_limits(rel, line)
+
+  elif line.startswith("set voltage limit ("):
+    stat = do_set_voltage_limit(rel, line)
 
   elif line == "on":
     stat = do_on(rel, line)
