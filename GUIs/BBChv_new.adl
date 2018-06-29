@@ -1,0 +1,3739 @@
+
+file {
+	name="/home/sysuser/Downloads/BBChv_new.adl"
+	version=030114
+}
+display {
+	object {
+		x=0
+		y=125
+		width=1024
+		height=609
+	}
+	clr=30
+	bclr=42
+	cmap=""
+	gridSpacing=5
+	gridOn=0
+	snapToGrid=0
+}
+"color map" {
+	ncolors=65
+	colors {
+		ffffff,
+		ececec,
+		dadada,
+		c8c8c8,
+		bbbbbb,
+		aeaeae,
+		9e9e9e,
+		919191,
+		858585,
+		787878,
+		696969,
+		5a5a5a,
+		464646,
+		2d2d2d,
+		000000,
+		00d800,
+		1ebb00,
+		339900,
+		2d7f00,
+		216c00,
+		fd0000,
+		de1309,
+		be190b,
+		a01207,
+		820400,
+		5893ff,
+		597ee1,
+		4b6ec7,
+		3a5eab,
+		27548d,
+		fbf34a,
+		f9da3c,
+		eeb62b,
+		e19015,
+		cd6100,
+		ffb0ff,
+		d67fe2,
+		ae4ebc,
+		8b1a96,
+		610a75,
+		a4aaff,
+		8793e2,
+		6a73c1,
+		4d52a4,
+		343386,
+		c7bb6d,
+		b79d5c,
+		a47e3c,
+		7d5627,
+		58340f,
+		99ffff,
+		73dfff,
+		4ea5f9,
+		2a63e4,
+		0a00b8,
+		ebf1b5,
+		d4db9d,
+		bbc187,
+		a6a462,
+		8b8239,
+		73ff6b,
+		52da3b,
+		3cb420,
+		289315,
+		1a7309,
+	}
+}
+text {
+	object {
+		x=56
+		y=0
+		width=380
+		height=50
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="LeCroy1445A Controller"
+}
+"text update" {
+	object {
+		x=180
+		y=145
+		width=70
+		height=20
+	}
+	monitor {
+		chan="BBCHV:00:00:vmon"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=180
+		y=170
+		width=70
+		height=20
+	}
+	monitor {
+		chan="BBCHV:00:01:vmon"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=180
+		y=195
+		width=70
+		height=20
+	}
+	monitor {
+		chan="BBCHV:00:02:vmon"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=180
+		y=220
+		width=70
+		height=20
+	}
+	monitor {
+		chan="BBCHV:00:03:vmon"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"strip chart" {
+	object {
+		x=280
+		y=145
+		width=160
+		height=100
+	}
+	plotcom {
+		title="v-t"
+		xlabel="time"
+		ylabel="voltage"
+		clr=53
+		bclr=30
+	}
+	period=500.000000
+	pen[0] {
+		chan="BBChv:SUB_RD_V_1:$(SLOT).E"
+		clr=20
+		limits {
+		}
+	}
+	pen[1] {
+		chan="BBChv:SUB_RD_V_1:$(SLOT).F"
+		clr=60
+		limits {
+		}
+	}
+	pen[2] {
+		chan="BBChv:SUB_RD_V_1:$(SLOT).G"
+		clr=25
+		limits {
+		}
+	}
+	pen[3] {
+		chan="BBChv:SUB_RD_V_1:$(SLOT).H"
+		clr=14
+		limits {
+		}
+	}
+}
+"strip chart" {
+	object {
+		x=280
+		y=256
+		width=160
+		height=100
+	}
+	plotcom {
+		title="v-t"
+		xlabel="time"
+		ylabel="voltage"
+		clr=53
+		bclr=30
+	}
+	period=500.000000
+	pen[0] {
+		chan="BBChv:SUB_RD_V_1:$(SLOT).I"
+		clr=20
+		limits {
+		}
+	}
+	pen[1] {
+		chan="BBChv:SUB_RD_V_1:$(SLOT).J"
+		clr=15
+		limits {
+		}
+	}
+	pen[2] {
+		chan="BBChv:SUB_RD_V_1:$(SLOT).K"
+		clr=25
+		limits {
+		}
+	}
+	pen[3] {
+		chan="BBChv:SUB_RD_V_1:$(SLOT).L"
+		clr=14
+		limits {
+		}
+	}
+}
+text {
+	object {
+		x=6
+		y=166
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP_STAT1_1.F"
+	}
+	textix="*"
+}
+text {
+	object {
+		x=16
+		y=170
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP_STAT2_1.F"
+	}
+	textix="S"
+}
+text {
+	object {
+		x=6
+		y=191
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP_STAT1_1.G"
+	}
+	textix="*"
+}
+text {
+	object {
+		x=16
+		y=193
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP_STAT2_1.G"
+	}
+	textix="S"
+}
+text {
+	object {
+		x=6
+		y=216
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP_STAT1_1.H"
+	}
+	textix="*"
+}
+text {
+	object {
+		x=16
+		y=218
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP_STAT2_1.H"
+	}
+	textix="S"
+}
+text {
+	object {
+		x=6
+		y=256
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP_STAT1_1.I"
+	}
+	textix="*"
+}
+text {
+	object {
+		x=16
+		y=258
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP_STAT2_1.I"
+	}
+	textix="S"
+}
+text {
+	object {
+		x=6
+		y=281
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP_STAT1_1.J"
+	}
+	textix="*"
+}
+text {
+	object {
+		x=16
+		y=283
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP_STAT2_1.J"
+	}
+	textix="S"
+}
+text {
+	object {
+		x=6
+		y=306
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP_STAT1_1.K"
+	}
+	textix="*"
+}
+text {
+	object {
+		x=16
+		y=308
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP_STAT2_1.K"
+	}
+	textix="S"
+}
+text {
+	object {
+		x=6
+		y=331
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP_STAT1_1.L"
+	}
+	textix="*"
+}
+text {
+	object {
+		x=16
+		y=333
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP_STAT2_1.L"
+	}
+	textix="S"
+}
+text {
+	object {
+		x=6
+		y=146
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP_STAT1_1.E"
+	}
+	textix="*"
+}
+text {
+	object {
+		x=16
+		y=146
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP_STAT2_1.E"
+	}
+	textix="S"
+}
+text {
+	object {
+		x=4
+		y=399
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP1_STAT1_1.F"
+	}
+	textix="*"
+}
+text {
+	object {
+		x=13
+		y=403
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP1_STAT2_1.F"
+	}
+	textix="S"
+}
+text {
+	object {
+		x=4
+		y=424
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP1_STAT1_1.G"
+	}
+	textix="*"
+}
+text {
+	object {
+		x=13
+		y=426
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP1_STAT2_1.G"
+	}
+	textix="S"
+}
+text {
+	object {
+		x=4
+		y=449
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP1_STAT1_1.H"
+	}
+	textix="*"
+}
+text {
+	object {
+		x=13
+		y=451
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP1_STAT2_1.H"
+	}
+	textix="S"
+}
+text {
+	object {
+		x=4
+		y=489
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP1_STAT1_1.I"
+	}
+	textix="*"
+}
+text {
+	object {
+		x=13
+		y=491
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP1_STAT2_1.I"
+	}
+	textix="S"
+}
+text {
+	object {
+		x=4
+		y=514
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP1_STAT1_1.J"
+	}
+	textix="*"
+}
+text {
+	object {
+		x=13
+		y=516
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP1_STAT2_1.J"
+	}
+	textix="S"
+}
+text {
+	object {
+		x=4
+		y=539
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP1_STAT1_1.K"
+	}
+	textix="*"
+}
+text {
+	object {
+		x=13
+		y=541
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP1_STAT2_1.K"
+	}
+	textix="S"
+}
+text {
+	object {
+		x=4
+		y=564
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP1_STAT1_1.L"
+	}
+	textix="*"
+}
+text {
+	object {
+		x=13
+		y=566
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP1_STAT2_1.L"
+	}
+	textix="S"
+}
+text {
+	object {
+		x=4
+		y=380
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP1_STAT1_1.E"
+	}
+	textix="*"
+}
+text {
+	object {
+		x=13
+		y=380
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP1_STAT2_1.E"
+	}
+	textix="S"
+}
+text {
+	object {
+		x=163
+		y=58
+		width=150
+		height=40
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="Voltage"
+}
+"text entry" {
+	object {
+		x=580
+		y=546
+		width=80
+		height=20
+	}
+	control {
+		chan="BBChv:SUB_SET_DMD1_1:$(SLOT).K"
+		clr=30
+		bclr=42
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=580
+		y=496
+		width=80
+		height=20
+	}
+	control {
+		chan="BBChv:SUB_SET_DMD1_1:$(SLOT).I"
+		clr=30
+		bclr=42
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=580
+		y=521
+		width=80
+		height=20
+	}
+	control {
+		chan="BBChv:SUB_SET_DMD1_1:$(SLOT).J"
+		clr=30
+		bclr=42
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=580
+		y=571
+		width=80
+		height=20
+	}
+	control {
+		chan="BBChv:SUB_SET_DMD1_1:$(SLOT).L"
+		clr=30
+		bclr=42
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=580
+		y=426
+		width=80
+		height=20
+	}
+	control {
+		chan="BBChv:SUB_SET_DMD1_1:$(SLOT).G"
+		clr=30
+		bclr=42
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=580
+		y=451
+		width=80
+		height=20
+	}
+	control {
+		chan="BBChv:SUB_SET_DMD1_1:$(SLOT).H"
+		clr=30
+		bclr=42
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=580
+		y=401
+		width=80
+		height=20
+	}
+	control {
+		chan="BBChv:SUB_SET_DMD1_1:$(SLOT).F"
+		clr=30
+		bclr=42
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=580
+		y=376
+		width=80
+		height=20
+	}
+	control {
+		chan="BBChv:SUB_SET_DMD1_1:$(SLOT).E"
+		clr=30
+		bclr=42
+	}
+	limits {
+	}
+}
+valuator {
+	object {
+		x=459
+		y=372
+		width=100
+		height=20
+	}
+	control {
+		chan="BBChv:SUB_SET_DMD1_1:$(SLOT).E"
+		clr=30
+		bclr=42
+	}
+	dPrecision=1.000000
+	limits {
+	}
+}
+valuator {
+	object {
+		x=459
+		y=542
+		width=100
+		height=20
+	}
+	control {
+		chan="BBChv:SUB_SET_DMD1_1:$(SLOT).K"
+		clr=30
+		bclr=42
+	}
+	dPrecision=1.000000
+	limits {
+	}
+}
+valuator {
+	object {
+		x=459
+		y=422
+		width=100
+		height=20
+	}
+	control {
+		chan="BBChv:SUB_SET_DMD1_1:$(SLOT).G"
+		clr=30
+		bclr=42
+	}
+	dPrecision=1.000000
+	limits {
+	}
+}
+valuator {
+	object {
+		x=459
+		y=447
+		width=100
+		height=20
+	}
+	control {
+		chan="BBChv:SUB_SET_DMD1_1:$(SLOT).H"
+		clr=30
+		bclr=42
+	}
+	dPrecision=1.000000
+	limits {
+	}
+}
+valuator {
+	object {
+		x=459
+		y=492
+		width=100
+		height=20
+	}
+	control {
+		chan="BBChv:SUB_SET_DMD1_1:$(SLOT).I"
+		clr=30
+		bclr=42
+	}
+	dPrecision=1.000000
+	limits {
+	}
+}
+valuator {
+	object {
+		x=459
+		y=517
+		width=100
+		height=20
+	}
+	control {
+		chan="BBChv:SUB_SET_DMD1_1:$(SLOT).J"
+		clr=30
+		bclr=42
+	}
+	dPrecision=1.000000
+	limits {
+	}
+}
+valuator {
+	object {
+		x=459
+		y=397
+		width=100
+		height=20
+	}
+	control {
+		chan="BBChv:SUB_SET_DMD1_1:$(SLOT).F"
+		clr=30
+		bclr=42
+	}
+	dPrecision=1.000000
+	limits {
+	}
+}
+valuator {
+	object {
+		x=459
+		y=567
+		width=100
+		height=20
+	}
+	control {
+		chan="BBChv:SUB_SET_DMD1_1:$(SLOT).L"
+		clr=30
+		bclr=42
+	}
+	dPrecision=1.000000
+	limits {
+	}
+}
+text {
+	object {
+		x=465
+		y=111
+		width=16
+		height=14
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="0"
+}
+text {
+	object {
+		x=589
+		y=111
+		width=50
+		height=14
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="|2100|"
+}
+text {
+	object {
+		x=409
+		y=66
+		width=200
+		height=25
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="set demand value "
+}
+text {
+	object {
+		x=199
+		y=103
+		width=55
+		height=22
+	}
+	"basic attribute" {
+		clr=35
+	}
+	textix="(V)"
+}
+"text update" {
+	object {
+		x=794
+		y=256
+		width=70
+		height=20
+	}
+	monitor {
+		chan="BBChv:SUB_RD_I_1:$(SLOT).I"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=794
+		y=281
+		width=70
+		height=20
+	}
+	monitor {
+		chan="BBChv:SUB_RD_I_1:$(SLOT).J"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=794
+		y=306
+		width=70
+		height=20
+	}
+	monitor {
+		chan="BBChv:SUB_RD_I_1:$(SLOT).K"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=794
+		y=331
+		width=70
+		height=20
+	}
+	monitor {
+		chan="BBChv:SUB_RD_I_1:$(SLOT).L"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=794
+		y=376
+		width=70
+		height=20
+	}
+	monitor {
+		chan="BBChv:SUB_RD_I1_1:$(SLOT).E"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=794
+		y=400
+		width=70
+		height=20
+	}
+	monitor {
+		chan="BBChv:SUB_RD_I1_1:$(SLOT).F"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=794
+		y=425
+		width=70
+		height=20
+	}
+	monitor {
+		chan="BBChv:SUB_RD_I1_1:$(SLOT).G"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=794
+		y=450
+		width=70
+		height=20
+	}
+	monitor {
+		chan="BBChv:SUB_RD_I1_1:$(SLOT).H"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=794
+		y=490
+		width=70
+		height=20
+	}
+	monitor {
+		chan="BBChv:SUB_RD_I1_1:$(SLOT).I"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=794
+		y=515
+		width=70
+		height=20
+	}
+	monitor {
+		chan="BBChv:SUB_RD_I1_1:$(SLOT).J"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=794
+		y=540
+		width=70
+		height=20
+	}
+	monitor {
+		chan="BBChv:SUB_RD_I1_1:$(SLOT).K"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=794
+		y=565
+		width=70
+		height=20
+	}
+	monitor {
+		chan="BBChv:SUB_RD_I1_1:$(SLOT).L"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=714
+		y=166
+		width=70
+		height=20
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="chn 1"
+}
+text {
+	object {
+		x=714
+		y=191
+		width=70
+		height=20
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="chn 2"
+}
+text {
+	object {
+		x=714
+		y=216
+		width=70
+		height=20
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="chn 3"
+}
+text {
+	object {
+		x=714
+		y=256
+		width=70
+		height=20
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="chn 4"
+}
+text {
+	object {
+		x=714
+		y=281
+		width=70
+		height=20
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="chn 5"
+}
+text {
+	object {
+		x=714
+		y=306
+		width=70
+		height=20
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="chn 6"
+}
+text {
+	object {
+		x=714
+		y=331
+		width=70
+		height=20
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="chn 7"
+}
+text {
+	object {
+		x=714
+		y=142
+		width=70
+		height=20
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="chn 0"
+}
+text {
+	object {
+		x=714
+		y=400
+		width=70
+		height=20
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="chn 9"
+}
+text {
+	object {
+		x=714
+		y=425
+		width=70
+		height=20
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="chn 10"
+}
+text {
+	object {
+		x=714
+		y=450
+		width=70
+		height=20
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="chn 11"
+}
+text {
+	object {
+		x=714
+		y=490
+		width=70
+		height=20
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="chn 12"
+}
+text {
+	object {
+		x=714
+		y=515
+		width=70
+		height=20
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="chn 13"
+}
+text {
+	object {
+		x=714
+		y=540
+		width=70
+		height=20
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="chn 14"
+}
+text {
+	object {
+		x=714
+		y=565
+		width=70
+		height=20
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="chn 15"
+}
+text {
+	object {
+		x=714
+		y=376
+		width=70
+		height=20
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="chn 8"
+}
+text {
+	object {
+		x=689
+		y=166
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP_STAT2_1.F"
+	}
+	textix="S"
+}
+text {
+	object {
+		x=689
+		y=191
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP_STAT2_1.G"
+	}
+	textix="S"
+}
+text {
+	object {
+		x=689
+		y=216
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP_STAT2_1.H"
+	}
+	textix="S"
+}
+text {
+	object {
+		x=689
+		y=256
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP_STAT2_1.I"
+	}
+	textix="S"
+}
+text {
+	object {
+		x=689
+		y=281
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP_STAT2_1.J"
+	}
+	textix="S"
+}
+text {
+	object {
+		x=689
+		y=306
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP_STAT2_1.K"
+	}
+	textix="S"
+}
+text {
+	object {
+		x=689
+		y=331
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP_STAT2_1.L"
+	}
+	textix="S"
+}
+text {
+	object {
+		x=689
+		y=142
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP_STAT2_1.E"
+	}
+	textix="S"
+}
+"strip chart" {
+	object {
+		x=894
+		y=494
+		width=160
+		height=100
+	}
+	plotcom {
+		title="I-t"
+		xlabel="time"
+		ylabel="current"
+		clr=53
+		bclr=30
+	}
+	period=1200.000000
+	pen[0] {
+		chan="BBChv:SUB_RD_I1_1:$(SLOT).I"
+		clr=20
+		limits {
+		}
+	}
+	pen[1] {
+		chan="BBChv:SUB_RD_I1_1:$(SLOT).J"
+		clr=15
+		limits {
+		}
+	}
+	pen[2] {
+		chan="BBChv:SUB_RD_I1_1:$(SLOT).K"
+		clr=25
+		limits {
+		}
+	}
+	pen[3] {
+		chan="BBChv:SUB_RD_I1_1:$(SLOT).L"
+		clr=30
+		limits {
+		}
+	}
+}
+"strip chart" {
+	object {
+		x=894
+		y=145
+		width=160
+		height=100
+	}
+	plotcom {
+		title="I-t"
+		xlabel="time"
+		ylabel="current"
+		clr=53
+		bclr=30
+	}
+	period=1200.000000
+	pen[0] {
+		chan="BBChv:SUB_RD_I_1:$(SLOT).E"
+		clr=20
+		limits {
+		}
+	}
+	pen[1] {
+		chan="BBChv:SUB_RD_I_1:$(SLOT).F"
+		clr=60
+		limits {
+		}
+	}
+	pen[2] {
+		chan="BBChv:SUB_RD_I_1:$(SLOT).G"
+		clr=25
+		limits {
+		}
+	}
+	pen[3] {
+		chan="BBChv:SUB_RD_I_1:$(SLOT).H"
+		clr=14
+		limits {
+		}
+	}
+}
+"strip chart" {
+	object {
+		x=894
+		y=256
+		width=160
+		height=100
+	}
+	plotcom {
+		title="I-t"
+		xlabel="time"
+		ylabel="current"
+		clr=53
+		bclr=30
+	}
+	period=1200.000000
+	pen[0] {
+		chan="BBChv:SUB_RD_I_1:$(SLOT).I"
+		clr=20
+		limits {
+		}
+	}
+	pen[1] {
+		chan="BBChv:SUB_RD_I_1:$(SLOT).J"
+		clr=15
+		limits {
+		}
+	}
+	pen[2] {
+		chan="BBChv:SUB_RD_I_1:$(SLOT).K"
+		clr=25
+		limits {
+		}
+	}
+	pen[3] {
+		chan="BBChv:SUB_RD_I_1:$(SLOT).L"
+		clr=30
+		limits {
+		}
+	}
+}
+"strip chart" {
+	object {
+		x=894
+		y=374
+		width=160
+		height=100
+	}
+	plotcom {
+		title="I-t"
+		xlabel="time"
+		ylabel="current"
+		clr=53
+		bclr=30
+	}
+	period=1200.000000
+	pen[0] {
+		chan="BBChv:SUB_RD_I1_1:$(SLOT).E"
+		clr=20
+		limits {
+		}
+	}
+	pen[1] {
+		chan="BBChv:SUB_RD_I1_1:$(SLOT).F"
+		clr=15
+		limits {
+		}
+	}
+	pen[2] {
+		chan="BBChv:SUB_RD_I1_1:$(SLOT).G"
+		clr=25
+		limits {
+		}
+	}
+	pen[3] {
+		chan="BBChv:SUB_RD_I1_1:$(SLOT).H"
+		clr=14
+		limits {
+		}
+	}
+}
+text {
+	object {
+		x=689
+		y=400
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP1_STAT2_1.F"
+	}
+	textix="S"
+}
+text {
+	object {
+		x=689
+		y=425
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP1_STAT2_1.G"
+	}
+	textix="S"
+}
+text {
+	object {
+		x=689
+		y=450
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP1_STAT2_1.H"
+	}
+	textix="S"
+}
+text {
+	object {
+		x=689
+		y=490
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP1_STAT2_1.I"
+	}
+	textix="S"
+}
+text {
+	object {
+		x=689
+		y=515
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP1_STAT2_1.J"
+	}
+	textix="S"
+}
+text {
+	object {
+		x=689
+		y=540
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP1_STAT2_1.K"
+	}
+	textix="S"
+}
+text {
+	object {
+		x=689
+		y=565
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP1_STAT2_1.L"
+	}
+	textix="S"
+}
+text {
+	object {
+		x=689
+		y=376
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP1_STAT2_1.E"
+	}
+	textix="S"
+}
+text {
+	object {
+		x=758
+		y=61
+		width=150
+		height=40
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="Current"
+}
+text {
+	object {
+		x=806
+		y=104
+		width=55
+		height=22
+	}
+	"basic attribute" {
+		clr=35
+	}
+	textix="(uA)"
+}
+image {
+	object {
+		x=981
+		y=1
+		width=100
+		height=103
+	}
+	type="gif"
+	"image name"="/home/sysuser/GUI/trg/slogo.gif"
+}
+text {
+	object {
+		x=94
+		y=101
+		width=38
+		height=16
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="Slat"
+}
+text {
+	object {
+		x=133
+		y=101
+		width=38
+		height=16
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="Tray"
+}
+composite {
+	object {
+		x=122
+		y=118
+		width=15
+		height=30
+	}
+	"composite name"=""
+	children {
+		polygon {
+			object {
+				x=122
+				y=134
+				width=15
+				height=14
+			}
+			"basic attribute" {
+				clr=35
+			}
+			points {
+				(122,135)
+				(137,134)
+				(129,148)
+				(122,135)
+			}
+		}
+		rectangle {
+			object {
+				x=127
+				y=118
+				width=5
+				height=17
+			}
+			"basic attribute" {
+				clr=35
+			}
+		}
+	}
+}
+polyline {
+	object {
+		x=87
+		y=116
+		width=84
+		height=2
+	}
+	"basic attribute" {
+		clr=30
+		width=2
+	}
+	points {
+		(88,117)
+		(170,117)
+	}
+}
+"text update" {
+	object {
+		x=71
+		y=131
+		width=23
+		height=18
+	}
+	monitor {
+		chan="BBChv:SUB_SLAT_1:$(SLOT).E"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=94
+		y=170
+		width=30
+		height=20
+	}
+	monitor {
+		chan="BBChv:SUB_SLAT_1:$(SLOT).F"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=95
+		y=195
+		width=30
+		height=20
+	}
+	monitor {
+		chan="BBChv:SUB_SLAT_1:$(SLOT).G"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=95
+		y=220
+		width=30
+		height=20
+	}
+	monitor {
+		chan="BBChv:SUB_SLAT_1:$(SLOT).H"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=135
+		y=145
+		width=30
+		height=20
+	}
+	monitor {
+		chan="BBChv:SUB_TRAY_1:$(SLOT).E"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=135
+		y=170
+		width=30
+		height=20
+	}
+	monitor {
+		chan="BBChv:SUB_TRAY_1:$(SLOT).F"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=135
+		y=195
+		width=30
+		height=20
+	}
+	monitor {
+		chan="BBChv:SUB_TRAY_1:$(SLOT).G"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=135
+		y=220
+		width=30
+		height=20
+	}
+	monitor {
+		chan="BBChv:SUB_TRAY_1:$(SLOT).H"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=715
+		y=25
+		width=145
+		height=25
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="Slot Number"
+}
+"text update" {
+	object {
+		x=865
+		y=25
+		width=40
+		height=25
+	}
+	monitor {
+		chan="BBChv:slotnum_1:$(SLOT)"
+		clr=30
+		bclr=42
+	}
+	align="horiz. centered"
+	limits {
+	}
+}
+text {
+	object {
+		x=30
+		y=145
+		width=50
+		height=20
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="chn 0"
+}
+text {
+	object {
+		x=30
+		y=170
+		width=50
+		height=20
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="chn 1"
+}
+text {
+	object {
+		x=30
+		y=195
+		width=50
+		height=20
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="chn 2"
+}
+text {
+	object {
+		x=30
+		y=220
+		width=50
+		height=20
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="chn 3"
+}
+text {
+	object {
+		x=30
+		y=330
+		width=50
+		height=20
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="chn 7"
+}
+text {
+	object {
+		x=30
+		y=305
+		width=50
+		height=20
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="chn 6"
+}
+text {
+	object {
+		x=30
+		y=280
+		width=50
+		height=20
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="chn 5"
+}
+text {
+	object {
+		x=30
+		y=255
+		width=50
+		height=20
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="chn 4"
+}
+"text entry" {
+	object {
+		x=579
+		y=220
+		width=80
+		height=20
+	}
+	control {
+		chan="BBChv:SUB_SET_DMD_1:$(SLOT).H"
+		clr=30
+		bclr=42
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=579
+		y=195
+		width=80
+		height=20
+	}
+	control {
+		chan="BBChv:SUB_SET_DMD_1:$(SLOT).G"
+		clr=30
+		bclr=42
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=579
+		y=170
+		width=80
+		height=20
+	}
+	control {
+		chan="BBChv:SUB_SET_DMD_1:$(SLOT).F"
+		clr=30
+		bclr=42
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=579
+		y=145
+		width=80
+		height=20
+	}
+	control {
+		chan="BBChv:SUB_SET_DMD_1:$(SLOT).E"
+		clr=30
+		bclr=42
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=679
+		y=142
+		width=10
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP_STAT1_1.E"
+	}
+	textix="*"
+}
+text {
+	object {
+		x=679
+		y=166
+		width=10
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP_STAT1_1.F"
+	}
+	textix="*"
+}
+text {
+	object {
+		x=679
+		y=191
+		width=10
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP_STAT1_1.G"
+	}
+	textix="*"
+}
+text {
+	object {
+		x=679
+		y=216
+		width=10
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP_STAT1_1.H"
+	}
+	textix="*"
+}
+text {
+	object {
+		x=679
+		y=256
+		width=10
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP_STAT1_1.I"
+	}
+	textix="*"
+}
+text {
+	object {
+		x=679
+		y=281
+		width=10
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP_STAT1_1.J"
+	}
+	textix="*"
+}
+text {
+	object {
+		x=679
+		y=306
+		width=10
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP_STAT1_1.K"
+	}
+	textix="*"
+}
+text {
+	object {
+		x=679
+		y=331
+		width=10
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP_STAT1_1.L"
+	}
+	textix="*"
+}
+text {
+	object {
+		x=679
+		y=376
+		width=10
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP1_STAT1_1.E"
+	}
+	textix="*"
+}
+text {
+	object {
+		x=679
+		y=400
+		width=10
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP1_STAT1_1.F"
+	}
+	textix="*"
+}
+text {
+	object {
+		x=679
+		y=425
+		width=10
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP1_STAT1_1.G"
+	}
+	textix="*"
+}
+text {
+	object {
+		x=679
+		y=450
+		width=10
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP1_STAT1_1.H"
+	}
+	textix="*"
+}
+text {
+	object {
+		x=679
+		y=490
+		width=10
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP1_STAT1_1.I"
+	}
+	textix="*"
+}
+text {
+	object {
+		x=679
+		y=515
+		width=10
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP1_STAT1_1.J"
+	}
+	textix="*"
+}
+text {
+	object {
+		x=679
+		y=540
+		width=10
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP1_STAT1_1.K"
+	}
+	textix="*"
+}
+text {
+	object {
+		x=679
+		y=565
+		width=10
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BBChv:SUB_TRIP1_STAT1_1.L"
+	}
+	textix="*"
+}
+"text update" {
+	object {
+		x=95
+		y=255
+		width=30
+		height=20
+	}
+	monitor {
+		chan="BBChv:SUB_SLAT_1:$(SLOT).I"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=95
+		y=280
+		width=30
+		height=20
+	}
+	monitor {
+		chan="BBChv:SUB_SLAT_1:$(SLOT).J"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=95
+		y=305
+		width=30
+		height=20
+	}
+	monitor {
+		chan="BBChv:SUB_SLAT_1:$(SLOT).K"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=95
+		y=330
+		width=30
+		height=20
+	}
+	monitor {
+		chan="BBChv:SUB_SLAT_1:$(SLOT).L"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=135
+		y=255
+		width=30
+		height=20
+	}
+	monitor {
+		chan="BBChv:SUB_TRAY_1:$(SLOT).I"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=135
+		y=280
+		width=30
+		height=20
+	}
+	monitor {
+		chan="BBChv:SUB_TRAY_1:$(SLOT).J"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=135
+		y=305
+		width=30
+		height=20
+	}
+	monitor {
+		chan="BBChv:SUB_TRAY_1:$(SLOT).K"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=135
+		y=330
+		width=30
+		height=20
+	}
+	monitor {
+		chan="BBChv:SUB_TRAY_1:$(SLOT).L"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=180
+		y=330
+		width=70
+		height=20
+	}
+	monitor {
+		chan="BBCHV:00:07:vmon"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=180
+		y=305
+		width=70
+		height=20
+	}
+	monitor {
+		chan="BBCHV:00:06:vmon"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=180
+		y=280
+		width=70
+		height=20
+	}
+	monitor {
+		chan="BBCHV:00:05:vmon"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=180
+		y=255
+		width=70
+		height=20
+	}
+	monitor {
+		chan="BBCHV:00:04:vmon"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=579
+		y=330
+		width=80
+		height=20
+	}
+	control {
+		chan="BBChv:SUB_SET_DMD_1:$(SLOT).L"
+		clr=30
+		bclr=42
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=579
+		y=305
+		width=80
+		height=20
+	}
+	control {
+		chan="BBChv:SUB_SET_DMD_1:$(SLOT).K"
+		clr=30
+		bclr=42
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=579
+		y=280
+		width=80
+		height=20
+	}
+	control {
+		chan="BBChv:SUB_SET_DMD_1:$(SLOT).J"
+		clr=30
+		bclr=42
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=579
+		y=255
+		width=80
+		height=20
+	}
+	control {
+		chan="BBChv:SUB_SET_DMD_1:$(SLOT).I"
+		clr=30
+		bclr=42
+	}
+	limits {
+	}
+}
+valuator {
+	object {
+		x=459
+		y=328
+		width=100
+		height=20
+	}
+	control {
+		chan="BBChv:SUB_SET_DMD_1:$(SLOT).L"
+		clr=30
+		bclr=42
+	}
+	dPrecision=1.000000
+	limits {
+	}
+}
+valuator {
+	object {
+		x=459
+		y=303
+		width=100
+		height=20
+	}
+	control {
+		chan="BBChv:SUB_SET_DMD_1:$(SLOT).K"
+		clr=30
+		bclr=42
+	}
+	dPrecision=1.000000
+	limits {
+	}
+}
+valuator {
+	object {
+		x=459
+		y=278
+		width=100
+		height=20
+	}
+	control {
+		chan="BBChv:SUB_SET_DMD_1:$(SLOT).J"
+		clr=30
+		bclr=42
+	}
+	dPrecision=1.000000
+	limits {
+	}
+}
+valuator {
+	object {
+		x=459
+		y=253
+		width=100
+		height=20
+	}
+	control {
+		chan="BBChv:SUB_SET_DMD_1:$(SLOT).I"
+		clr=30
+		bclr=42
+	}
+	dPrecision=1.000000
+	limits {
+	}
+}
+valuator {
+	object {
+		x=459
+		y=218
+		width=100
+		height=20
+	}
+	control {
+		chan="BBChv:SUB_SET_DMD_1:$(SLOT).H"
+		clr=30
+		bclr=42
+	}
+	dPrecision=1.000000
+	limits {
+	}
+}
+valuator {
+	object {
+		x=459
+		y=193
+		width=100
+		height=20
+	}
+	control {
+		chan="BBChv:SUB_SET_DMD_1:$(SLOT).G"
+		clr=30
+		bclr=42
+	}
+	dPrecision=1.000000
+	limits {
+	}
+}
+valuator {
+	object {
+		x=459
+		y=168
+		width=100
+		height=20
+	}
+	control {
+		chan="BBChv:SUB_SET_DMD_1:$(SLOT).F"
+		clr=30
+		bclr=42
+	}
+	clrmod="alarm"
+	dPrecision=1.000000
+	limits {
+	}
+}
+valuator {
+	object {
+		x=459
+		y=143
+		width=100
+		height=20
+	}
+	control {
+		chan="BBChv:SUB_SET_DMD_1:$(SLOT).E"
+		clr=30
+		bclr=42
+	}
+	clrmod="alarm"
+	dPrecision=1.000000
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=794
+		y=220
+		width=70
+		height=20
+	}
+	monitor {
+		chan="BBChv:SUB_RD_I_1:$(SLOT).H"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=794
+		y=195
+		width=70
+		height=20
+	}
+	monitor {
+		chan="BBChv:SUB_RD_I_1:$(SLOT).G"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=794
+		y=170
+		width=70
+		height=20
+	}
+	monitor {
+		chan="BBChv:SUB_RD_I_1:$(SLOT).F"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=794
+		y=145
+		width=70
+		height=20
+	}
+	monitor {
+		chan="BBChv:SUB_RD_I_1:$(SLOT).E"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=180
+		y=565
+		width=70
+		height=20
+	}
+	monitor {
+		chan="BBCHV:00:15:vmon"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=180
+		y=540
+		width=70
+		height=20
+	}
+	monitor {
+		chan="BBCHV:00:14:vmon"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=180
+		y=515
+		width=70
+		height=20
+	}
+	monitor {
+		chan="BBCHV:00:13:vmon"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=180
+		y=490
+		width=70
+		height=20
+	}
+	monitor {
+		chan="BBCHV:00:12:vmon"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=180
+		y=450
+		width=70
+		height=20
+	}
+	monitor {
+		chan="BBCHV:00:11:vmon"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=180
+		y=425
+		width=70
+		height=20
+	}
+	monitor {
+		chan="BBCHV:00:10:vmon"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=180
+		y=400
+		width=70
+		height=20
+	}
+	monitor {
+		chan="BBCHV:00:09:vmon"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=180
+		y=375
+		width=70
+		height=20
+	}
+	monitor {
+		chan="BBCHV:00:08:vmon"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"strip chart" {
+	object {
+		x=280
+		y=375
+		width=160
+		height=100
+	}
+	plotcom {
+		title="v-t"
+		xlabel="time"
+		ylabel="voltage"
+		clr=53
+		bclr=30
+	}
+	period=500.000000
+	pen[0] {
+		chan="BBChv:SUB_RD_V1_1:$(SLOT).E"
+		clr=20
+		limits {
+		}
+	}
+	pen[1] {
+		chan="BBChv:SUB_RD_V1_1:$(SLOT).F"
+		clr=15
+		limits {
+		}
+	}
+	pen[2] {
+		chan="BBChv:SUB_RD_V1_1:$(SLOT).G"
+		clr=25
+		limits {
+		}
+	}
+	pen[3] {
+		chan="BBChv:SUB_RD_V1_1:$(SLOT).H"
+		clr=14
+		limits {
+		}
+	}
+}
+"strip chart" {
+	object {
+		x=280
+		y=490
+		width=160
+		height=100
+	}
+	plotcom {
+		title="v-t"
+		xlabel="time"
+		ylabel="voltage"
+		clr=53
+		bclr=30
+	}
+	period=500.000000
+	pen[0] {
+		chan="BBChv:SUB_RD_V1_1:$(SLOT).I"
+		clr=20
+		limits {
+		}
+	}
+	pen[1] {
+		chan="BBChv:SUB_RD_V1_1:$(SLOT).J"
+		clr=15
+		limits {
+		}
+	}
+	pen[2] {
+		chan="BBChv:SUB_RD_V1_1:$(SLOT).K"
+		clr=25
+		limits {
+		}
+	}
+	pen[3] {
+		chan="BBChv:SUB_RD_V1_1:$(SLOT).L"
+		clr=14
+		limits {
+		}
+	}
+}
+"text update" {
+	object {
+		x=95
+		y=375
+		width=30
+		height=20
+	}
+	monitor {
+		chan="BBChv:SUB_SLAT1_1:$(SLOT).E"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=135
+		y=375
+		width=30
+		height=20
+	}
+	monitor {
+		chan="BBChv:SUB_TRAY1_1:$(SLOT).E"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=95
+		y=400
+		width=30
+		height=20
+	}
+	monitor {
+		chan="BBChv:SUB_SLAT1_1:$(SLOT).F"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=95
+		y=425
+		width=30
+		height=20
+	}
+	monitor {
+		chan="BBChv:SUB_SLAT1_1:$(SLOT).G"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=95
+		y=450
+		width=30
+		height=20
+	}
+	monitor {
+		chan="BBChv:SUB_SLAT1_1:$(SLOT).H"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=135
+		y=400
+		width=30
+		height=20
+	}
+	monitor {
+		chan="BBChv:SUB_TRAY1_1:$(SLOT).F"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=135
+		y=425
+		width=30
+		height=20
+	}
+	monitor {
+		chan="BBChv:SUB_TRAY1_1:$(SLOT).G"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=135
+		y=450
+		width=30
+		height=20
+	}
+	monitor {
+		chan="BBChv:SUB_TRAY1_1:$(SLOT).H"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+composite {
+	object {
+		x=30
+		y=379
+		width=55
+		height=90
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=30
+				y=379
+				width=55
+				height=20
+			}
+			"basic attribute" {
+				clr=30
+			}
+			textix="chn 8"
+		}
+		text {
+			object {
+				x=30
+				y=399
+				width=55
+				height=20
+			}
+			"basic attribute" {
+				clr=30
+			}
+			textix="chn 9"
+		}
+		text {
+			object {
+				x=30
+				y=424
+				width=55
+				height=20
+			}
+			"basic attribute" {
+				clr=30
+			}
+			textix="chn 10"
+		}
+		text {
+			object {
+				x=30
+				y=449
+				width=55
+				height=20
+			}
+			"basic attribute" {
+				clr=30
+			}
+			textix="chn 11"
+		}
+	}
+}
+text {
+	object {
+		x=30
+		y=490
+		width=55
+		height=20
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="chn 12"
+}
+text {
+	object {
+		x=30
+		y=515
+		width=55
+		height=20
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="chn 13"
+}
+text {
+	object {
+		x=30
+		y=540
+		width=55
+		height=20
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="chn 14"
+}
+text {
+	object {
+		x=30
+		y=565
+		width=55
+		height=20
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="chn 15"
+}
+"text update" {
+	object {
+		x=135
+		y=490
+		width=30
+		height=20
+	}
+	monitor {
+		chan="BBChv:SUB_TRAY1_1:$(SLOT).I"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=135
+		y=515
+		width=30
+		height=20
+	}
+	monitor {
+		chan="BBChv:SUB_TRAY1_1:$(SLOT).J"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=135
+		y=540
+		width=30
+		height=20
+	}
+	monitor {
+		chan="BBChv:SUB_TRAY1_1:$(SLOT).K"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=135
+		y=565
+		width=30
+		height=20
+	}
+	monitor {
+		chan="BBChv:SUB_TRAY1_1:$(SLOT).L"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=95
+		y=490
+		width=30
+		height=20
+	}
+	monitor {
+		chan="BBChv:SUB_SLAT1_1:$(SLOT).I"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=95
+		y=515
+		width=30
+		height=20
+	}
+	monitor {
+		chan="BBChv:SUB_SLAT1_1:$(SLOT).J"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=95
+		y=540
+		width=30
+		height=20
+	}
+	monitor {
+		chan="BBChv:SUB_SLAT1_1:$(SLOT).K"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=95
+		y=565
+		width=30
+		height=20
+	}
+	monitor {
+		chan="BBChv:SUB_SLAT1_1:$(SLOT).L"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+oval {
+	object {
+		x=442
+		y=147
+		width=16
+		height=16
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="BBChv:CALC_E_1:$(SLOT)"
+	}
+}
+oval {
+	object {
+		x=442
+		y=172
+		width=16
+		height=16
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="BBChv:CALC_F_1:$(SLOT)"
+	}
+}
+oval {
+	object {
+		x=442
+		y=197
+		width=16
+		height=16
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="BBChv:CALC_G_1:$(SLOT)"
+	}
+}
+oval {
+	object {
+		x=442
+		y=222
+		width=16
+		height=16
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="BBChv:CALC_H_1:$(SLOT)"
+	}
+}
+oval {
+	object {
+		x=442
+		y=257
+		width=16
+		height=16
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="BBChv:CALC_I_1:$(SLOT)"
+	}
+}
+oval {
+	object {
+		x=442
+		y=282
+		width=16
+		height=16
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="BBChv:CALC_J_1:$(SLOT)"
+	}
+}
+oval {
+	object {
+		x=442
+		y=307
+		width=16
+		height=16
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="BBChv:CALC_K_1:$(SLOT)"
+	}
+}
+oval {
+	object {
+		x=442
+		y=332
+		width=16
+		height=16
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="BBChv:CALC_L_1:$(SLOT)"
+	}
+}
+oval {
+	object {
+		x=442
+		y=376
+		width=16
+		height=16
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="BBChv:CALC1_E_1:$(SLOT)"
+	}
+}
+oval {
+	object {
+		x=442
+		y=401
+		width=16
+		height=16
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="BBChv:CALC1_F_1:$(SLOT)"
+	}
+}
+oval {
+	object {
+		x=442
+		y=426
+		width=16
+		height=16
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="BBChv:CALC1_G_1:$(SLOT)"
+	}
+}
+oval {
+	object {
+		x=442
+		y=451
+		width=16
+		height=16
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="BBChv:CALC1_H_1:$(SLOT)"
+	}
+}
+oval {
+	object {
+		x=442
+		y=496
+		width=16
+		height=16
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="BBChv:CALC1_I_1:$(SLOT)"
+	}
+}
+oval {
+	object {
+		x=442
+		y=521
+		width=16
+		height=16
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="BBChv:CALC1_J_1:$(SLOT)"
+	}
+}
+oval {
+	object {
+		x=442
+		y=546
+		width=16
+		height=16
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="BBChv:CALC1_K_1:$(SLOT)"
+	}
+}
+oval {
+	object {
+		x=442
+		y=571
+		width=16
+		height=16
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="BBChv:CALC1_L_1:$(SLOT)"
+	}
+}
