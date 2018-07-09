@@ -28,7 +28,7 @@ builder.SetDeviceName('BBCHV')
 for i in range (16):
     Boards.append(Board(i,relay))
 
-#The boards created above run through as an object
+#The boards created above run through the class as an object
 #for these four different demand voltages
 BBC_demands = BBCdemand(Boards)
 VPD_demands = VPDdemand(Boards)
@@ -39,7 +39,11 @@ set_ramprate = demandramprate(Boards)
 
 watch_dog = watchdog(10,Boards)
 
+#make limits is set to False 
+makelimits = False
+
 print "Hi from myApp"
+
 
 
 
@@ -92,7 +96,29 @@ def do_read():
   if status[7].find("on") >= 0:
     readstatus.set(1)
 
-   
+  
+  global makelimits
+  if makelimits == True:
+    showlimits = relay.put_cmd_sync("show limits ("+str(demandlimits.get())+",0-15)").split('\n')
+    counter = 0
+    for i in range(len(showlimits)):
+      limitvals = ""
+      new = showlimits[i].replace("\r","").split(" ")
+      for char in range(len(new)):
+        if new[char] == "":
+          continue
+        limitvals+= new[char]+" "
+      #print limitvals
+      if limitvals == "":
+        continue
+      ListofLimits[counter].set(limitvals)
+      counter += 1
+      #print ListofLimits[i].set(limitvals)
+      #print ListofLimits[i].set("test") 
+      #another = new.remove(' ')
+    makelimits = False
+    
+  
   watch_dog.reset()
     
   #for i in range(len(status)):
@@ -104,7 +130,7 @@ def do_runreading():
   #function to read through boards and their channels
   #(with voltage and current) every second
   while True:
-    time.sleep(1)
+    time.sleep(10)
     try:
       do_read()
     except:
@@ -121,6 +147,7 @@ def do_runreading():
 
 def do_startthread():
   #print Boards[13].channels[02].calc_pv.get()##prints out 'None'
+  #commands are set at the beginning of the start up
   BBC_demands.reload_dictionary()
   BBC_demands.request_change(1)
   BBC_demands.place_voltages(1)
@@ -128,6 +155,7 @@ def do_startthread():
   PPHV_demands.turnoff_PPHV(1)
   ZDC_demands.turnoff_ZDCSMD(1)
   ZDC_demands.turnoff_ZDC(1)
+  #watchdog is started up
   watch_dog.start()
   t = threading.Thread(target=do_runreading)
   t.daemon = True
@@ -162,9 +190,28 @@ def off(x):
   relay.put_cmd(command)
 
 
+
 #_____________________________________________________________________________________
+def show_limits(z):
+  if z == 0:
+    return
+  for i in range(len(ListofLimits)):
+    ListofLimits[i].set("")
+  #there is a delay of at most 10 seconds after the "Display" button is pressed to inform the user
+  ListofLimits[0].set("Reading in Progress")
+  global makelimits
+  makelimits = True
 
+#a list is created to hold enough PVs to show all the lines that hold the demand limit information
+ListofLimits = []
+for i in range(25):
+  #pv created to show each line of demand limits
+  ListofLimits.append(builder.stringIn("limits_line"+str(i)))
 
+#pv created to confirm which board the user wants to look at
+demandlimits = builder.longOut("demandlimits")
+#pv created to relay the confirmed board the user desires
+showlimits = builder.boolOut("showlimits", ZNAM = 0, ONAM = 1, HIGH = 0.1, on_update=show_limits)
 #pv created to turn lecroy on
 turnon = builder.boolOut("on", ZNAM=0, ONAM = 1, HIGH = 0.1, on_update=on)
 #pv created to turn lecroy off

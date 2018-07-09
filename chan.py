@@ -50,7 +50,10 @@ class Channels:
 
   def set_ramp(self, val):
     command = "set ramp ({0:d},{1:d}) {2:f}".format(self.BoardID, self.chanID, val)
-    self.relay.put_cmd(command)    
+    self.relay.put_cmd(command) 
+
+  #def voltage_limits(self):
+  #def current_limits(self):   
 
 
 
