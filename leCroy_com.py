@@ -55,6 +55,7 @@ class lecroy_com:
   def run_cmd(self, cmd):
     #insert the command
     try:
+      print cmd
       cmd += self.outterm
       for char in cmd:
         self.relay.write( char )
@@ -69,6 +70,7 @@ class lecroy_com:
         #append the character to response string
         resp += char
         #return the response
+      print resp
       return resp
     except:
       print "Error with cmd occured" , str(datetime.now())
