@@ -226,7 +226,7 @@ for i in range(25):
   ListofLimits.append(builder.stringIn("limits_line"+str(i)))
 
 #pv created to confirm which board the user wants to look at
-demandlimits = builder.longOut("demandlimits")
+demandlimits = builder.longOut("demandlimits",inital_value = 0)
 #pv created to relay the confirmed board the user desires
 showlimits = builder.boolOut("showlimits", ZNAM = 0, ONAM = 1, HIGH = 0.1, on_update=show_limits)
 #pv created to turn lecroy on
