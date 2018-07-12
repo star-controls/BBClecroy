@@ -28,10 +28,12 @@ What each python file does:
     function. The shell will also let the user know when the lecroy is turned on
     and off.
   BBCdemandClass.py
-    
+    Class to set demand voltages for BBC
   PPHVdemandclass.py
+    Class to set demand votlages for PP2PP
   VPDdemandclass.py
-    Also includes functions for VPDSMD
+    Class to set demand voltages for VPD. Also includes functions for VPDSMD
   ZDCdemandclass.py
+    Class to set demand voltages for ZDC
   leCroy_com.py
     Creates a serial connection to lecroy power supply
