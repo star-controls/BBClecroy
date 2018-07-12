@@ -12,7 +12,6 @@ from datetime import datetime
 import time
 import threading
 
-
 #port = "/tmp/ttyV1"
 port = "/dev/ttyS2"
 
@@ -37,7 +36,7 @@ PPHV_demands = PPHVdemand(Boards)
 
 set_ramprate = demandramprate(Boards)
 
-watch_dog = watchdog(20,Board)
+watch_dog = watchdog(20,Boards)
 
 #make limits is set to False 
 makelimits = False
@@ -121,16 +120,13 @@ def do_read():
   #for i in range(len(status)):
     #print i, status[i]
 
-  print "testing"
-
 def do_runreading():
   #function to read through boards and their channels
   #(with voltage and current) every second
   while True:
-    time.sleep(5)
+    time.sleep(10)
     try:
-      #do_read()
-      pass
+      do_read()
     except:
       relay.relay.close()
       watch_dog.handler()
@@ -208,7 +204,7 @@ for i in range(25):
   ListofLimits.append(builder.stringIn("limits_line"+str(i)))
 
 #pv created to confirm which board the user wants to look at
-demandlimits = builder.longOut("demandlimits")
+demandlimits = builder.longOut("demandlimits", initial_value = 0)
 #pv created to relay the confirmed board the user desires
 showlimits = builder.boolOut("showlimits", ZNAM = 0, ONAM = 1, HIGH = 0.1, on_update=show_limits)
 #pv created to turn lecroy on
