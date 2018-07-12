@@ -9,6 +9,3 @@ class demandramprate:
     for i in range(len(self.boardList)):
       for j in range(len(self.boardList[i].channels)):
         self.boardList[i].channels[j].ramprate.set(val)
-        
-    
-    

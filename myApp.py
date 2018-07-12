@@ -7,14 +7,15 @@ from ZDCdemandclass import ZDCdemand
 from PPHVdemandclass import PPHVdemand
 from leCroy_com import lecroy_com
 from demandramprateclass import demandramprate
+from demandLimitClass import demandlimit
 from watchdog import watchdog
 from datetime import datetime
 import time
 import threading
 
 
-#port = "/dev/pts/4"
 port = "/tmp/ttyV1"
+#port = "/dev/ttyS2"
 
 #open serial connection
 relay = lecroy_com(port)
@@ -36,16 +37,16 @@ ZDC_demands = ZDCdemand(Boards)
 PPHV_demands = PPHVdemand(Boards)
 
 set_ramprate = demandramprate(Boards)
+set_limits = demandlimit(Boards)
 
-watch_dog = watchdog(15,Boards)
+
+watch_dog = watchdog(20,Boards)
+
 
 #make limits is set to False 
 makelimits = False
 
 print "Hi from myApp"
-
-
-
 
 #create some PV, this is ai
 #example_pv = builder.aIn("this_is_a_test")
@@ -54,7 +55,7 @@ print "Hi from myApp"
 #_____________________________________________________________________________
 def do_read():
   #function to make some activity after ioc was started
-  #print "Hi from do_something"  
+  print "Hi from do_something"  
   #function that reads through boards and their channels to pick out 
   # voltage and current within string, and then set those values to 
   #their corresponding placement
@@ -133,15 +134,16 @@ def do_read():
   #for i in range(len(status)):
     #print i, status[i]
 
-
+  print "testing"
 
 def do_runreading():
   #function to read through boards and their channels
   #(with voltage and current) every second
   while True:
-    time.sleep(2)
+    time.sleep(10)
     try:
       do_read()
+      pass
     except:
       relay.relay.close()
       watch_dog.handler()
@@ -210,8 +212,9 @@ def show_limits(z):
     return
   for i in range(len(ListofLimits)):
     ListofLimits[i].set("")
-  #there is a delay of at most 10 seconds after the "Display" button is pressed to inform the user
-  #that their request was recieved and something is happening
+  #there is a delay of at most 10 seconds after the "Display" button is pressed so the user
+  #is informed that their message was recieved and something is happening by the message 
+  #"Reading in Progress"  
   ListofLimits[0].set("Reading in Progress")
   global makelimits
   makelimits = True
