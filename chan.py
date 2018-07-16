@@ -35,7 +35,7 @@ class Channels:
     self.calc_hihi = epics.PV(self.calc.name+".HIHI")
 		
   def write_voltage(self, val):
-    command = "write ({0:d},{1:d}) {2:f}".format(self.BoardID, self.chanID, (-1)*val)
+    command = "write ({0:d},{1:d}) {2:.1f}".format(self.BoardID, self.chanID, (-1)*val)
     self.relay.put_cmd(command)
 
   def reset_calc_limits(self):

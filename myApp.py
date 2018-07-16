@@ -37,7 +37,7 @@ PPHV_demands = PPHVdemand(Boards)
 
 set_ramprate = demandramprate(Boards)
 
-watch_dog = watchdog(10,Boards)
+watch_dog = watchdog(15,Boards)
 
 #make limits is set to False 
 makelimits = False
@@ -56,8 +56,8 @@ def do_read():
   #function to make some activity after ioc was started
   #print "Hi from do_something"  
   #function that reads through boards and their channels to pick out 
-  # voltage and current, and then set those values to their corresponding 
-  #placement
+  # voltage and current within string, and then set those values to 
+  #their corresponding placement
   for i in range (16):
     command = "read ({0:d},0-15)".format(i)
     #insert command
@@ -98,24 +98,33 @@ def do_read():
 
   
   global makelimits
+  #makelimits is turned to true when show_limits function (defined within myApp.py) is called.
+  #this is included in the do_read function because this is called very second as to be monitored 
+  #frequently.
   if makelimits == True:
+    #function used in minicom
     showlimits = relay.put_cmd_sync("show limits ("+str(demandlimits.get())+",0-15)").split('\n')
     counter = 0
     for i in range(len(showlimits)):
+      #limitvals is a created string that holds what the user sees for demand limits (for each line)
       limitvals = ""
+      #in order to reduce the size of each string, spaces and EOS are removed  
       new = showlimits[i].replace("\r","").split(" ")
+      #therefore, if the strng is found to be empty, it is skipped over and only valuable characters
+      #are appended
       for char in range(len(new)):
         if new[char] == "":
           continue
         limitvals+= new[char]+" "
-      #print limitvals
       if limitvals == "":
         continue
+      #each character is then appended to ListofLimits at corresponding counter
       ListofLimits[counter].set(limitvals)
       counter += 1
       #print ListofLimits[i].set(limitvals)
       #print ListofLimits[i].set("test") 
       #another = new.remove(' ')
+    #then, makelimits is set to False again so that this part of the program doesn't keep running
     makelimits = False
     
   
@@ -130,7 +139,7 @@ def do_runreading():
   #function to read through boards and their channels
   #(with voltage and current) every second
   while True:
-    time.sleep(10)
+    time.sleep(2)
     try:
       do_read()
     except:
@@ -149,7 +158,9 @@ def do_startthread():
   #print Boards[13].channels[02].calc_pv.get()##prints out 'None'
   #commands are set at the beginning of the start up
   BBC_demands.reload_dictionary()
+  VPD_demands.reload_dictionary()
   BBC_demands.request_change(1)
+  VPD_demands.request_change(1)
   BBC_demands.place_voltages(1)
   VPD_demands.turnoff_VPD(1)
   PPHV_demands.turnoff_PPHV(1)
@@ -171,6 +182,7 @@ def on(x):
   print "lecroy is on" 
   command = "on"
   relay.put_cmd(command)
+  readstatus.set(1)
   #char = relay.read()
   #while char != '\r':
       #read character from serial line
@@ -188,6 +200,7 @@ def off(x):
   print "lecroy is off"
   command = "off"
   relay.put_cmd(command)
+  readstatus.set(0)
 
 
 
@@ -198,6 +211,7 @@ def show_limits(z):
   for i in range(len(ListofLimits)):
     ListofLimits[i].set("")
   #there is a delay of at most 10 seconds after the "Display" button is pressed to inform the user
+  #that their request was recieved and something is happening
   ListofLimits[0].set("Reading in Progress")
   global makelimits
   makelimits = True

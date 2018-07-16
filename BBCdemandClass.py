@@ -11,8 +11,12 @@ class BBCdemand:
     self.diction_ary = {}
     self.activefile = 1
     self.chooseFile = builder.longOut("BBC_setting", initial_value = self.activefile , on_update = self.request_change)
+    #create pv to reload dictionary if changes were made according to the files where demand voltages
+    #are retrieved from
     self.reload = builder.boolOut("reload_BBC", ZNAM = 0, ONAM = 1, HIGH = 0.1, on_update = self.reload_dictionary)   
+    #create pv to retrieve file status of BBC
     self.fileInUse = builder.stringIn("BBCfilestatus") 
+    #create pv to set BBC voltages to zero
     self.turnoffBBC = builder.boolOut("BBCturnoff",ZNAM = 0, ONAM = 1, HIGH = 0.1, on_update = self.turnoff_BBC)  
     self.listofstringIns = []
     self.maximum = 10
@@ -61,6 +65,7 @@ class BBCdemand:
       self.listofstringIns[line].set(description)
              
   def turnoff_BBC(self,z):
+  #this function sets BBC voltage values to zero using a function found in boardClass.py
     if z == 0:
       return
     self.boardList[0].setToZero()
