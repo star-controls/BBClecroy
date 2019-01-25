@@ -7,7 +7,10 @@ from ZDCdemandclass import ZDCdemand
 from PPHVdemandclass import PPHVdemand
 from leCroy_com import lecroy_com
 from demandramprateclass import demandramprate
+#class for demand voltage limit
 from demandLimitClass import demandlimit
+from demandcurrenttrip import demandcurrenttrip
+from demandactrip import demandACtrip
 from watchdog import watchdog
 from datetime import datetime
 import time
@@ -37,8 +40,9 @@ ZDC_demands = ZDCdemand(Boards)
 PPHV_demands = PPHVdemand(Boards)
 
 set_ramprate = demandramprate(Boards)
-set_limits = demandlimit(Boards)
-
+set_limits = demandlimit(Boards,relay)
+set_current_trip = demandcurrenttrip(Boards,relay)
+set_ac_trip = demandACtrip(Boards,relay)
 
 watch_dog = watchdog(20,Boards)
 
@@ -143,7 +147,6 @@ def do_runreading():
     time.sleep(10)
     try:
       do_read()
-      pass
     except:
       relay.relay.close()
       watch_dog.handler()
@@ -163,7 +166,8 @@ def do_startthread():
   VPD_demands.reload_dictionary()
   BBC_demands.request_change(1)
   VPD_demands.request_change(1)
-  BBC_demands.place_voltages(1)
+  #BBC_demands.place_voltages(1)
+  BBC_demands.turnoff_BBC(1)
   VPD_demands.turnoff_VPD(1)
   PPHV_demands.turnoff_PPHV(1)
   ZDC_demands.turnoff_ZDCSMD(1)
@@ -174,6 +178,12 @@ def do_startthread():
   t.daemon = True
   t.start()
 
+
+#__________________________________________________________________________________
+def send_clear(x):
+  #send clear command to lecroy
+  if x == 0: return
+  relay.put_cmd("clear")
 
 
 #__________________________________________________________________________________
@@ -191,8 +201,6 @@ def on(x):
    #   char = relay.read()
     #  print char
       
-   
-
 
 #__________________________________________________________________________________
 def off(x):
@@ -203,7 +211,6 @@ def off(x):
   command = "off"
   relay.put_cmd(command)
   readstatus.set(0)
-
 
 
 #_____________________________________________________________________________________
@@ -226,7 +233,7 @@ for i in range(25):
   ListofLimits.append(builder.stringIn("limits_line"+str(i)))
 
 #pv created to confirm which board the user wants to look at
-demandlimits = builder.longOut("demandlimits",inital_value = 0)
+demandlimits = builder.longOut("demandlimits",initial_value = 0)
 #pv created to relay the confirmed board the user desires
 showlimits = builder.boolOut("showlimits", ZNAM = 0, ONAM = 1, HIGH = 0.1, on_update=show_limits)
 #pv created to turn lecroy on
@@ -236,6 +243,11 @@ turnoff = builder.boolOut("off", ZNAM = 0, ONAM = 1, HIGH = 0.1,on_update=off)
 #pv created to check the status of the lecroy, either on or off
 readstatus = builder.boolIn("showstatus",ZNAM = 0, ONAM = 1)
 
+#pv to show serial port
+serial_port_pv = builder.stringIn("serial_port", initial_value=port)
+
+#pv to send clear command
+clear_pv = builder.boolOut("clear", ZNAM=0, ONAM = 1, HIGH = 0.1, on_update=send_clear)
 
 #pvname = '{0:02d}:{1:02d}:'.format(BoardID, chanID)
 #placevalues = builder.aOut(pvname+"placevalues",on_update=place_voltages)

@@ -1,0 +1,9 @@
+./mod.awk -v diff=-50 < demand.20110124.bbc > demand.20110124a.bbc
+./mod.awk -v diff=-25 < demand.20110124.bbc > demand.20110124b.bbc
+./mod.awk -v diff=50  < demand.20110124.bbc > demand.20110124c.bbc
+./mod.awk -v diff=100 < demand.20110124.bbc > demand.20110124d.bbc
+./ext.awk < demand.20110124.bbc > 20110124.txt
+./ext.awk < demand.20110124a.bbc > 20110124a.txt
+./ext.awk < demand.20110124b.bbc > 20110124b.txt
+./ext.awk < demand.20110124c.bbc > 20110124c.txt
+./ext.awk < demand.20110124d.bbc > 20110124d.txt

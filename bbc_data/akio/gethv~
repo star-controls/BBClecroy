@@ -1,0 +1,6 @@
+#!/bin/csh
+set name=$argv[1]
+set diff=$argv[2]
+./mod.awk -v diff=$diff < $name.bbc > $name.$diff.bbc
+./ext.awk < $name.$diff.bbc > $name.$diff.txt
+./fixorder $name.$diff.txt

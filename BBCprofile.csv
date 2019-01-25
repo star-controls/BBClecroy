@@ -1,3 +1,5 @@
 filename,description
-data/demand_run18_midgain_polB_20180326.bbc,Default HV setting (Isobar)
-data/demand_fixed_highgain_polB_20180419.bbc,2nd HV setting (Fixed target)
+bbc_data/demand_run19_highgain_polB_20190117.bbc, Run19 high gain 
+bbc_data/demand_run19_midgain_polB_20190117.bbc, Run19 mid gain
+bbc_data/demand_all_1400.bbc, Lightleak hunting all 1400
+

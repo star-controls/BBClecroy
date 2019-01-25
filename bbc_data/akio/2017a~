@@ -1,0 +1,5 @@
+./mod.awk -v diff=+150 < demand_AuAu54_lowgain_reversedpolB_20170601.bbc > demand_AuAu54_lowgain_reversedpolB_20170601a.bbc
+
+./mod.awk -v diff=-50  < demand_pp_polB_20150208b.bbc > demand_pp_polB_20150208b.bbc.-50
+./mod.awk -v diff=50   < demand_pp_polB_20150208b.bbc > demand_pp_polB_20150208b.bbc.50
+./mod.awk -v diff=100  < demand_pp_polB_20150208b.bbc > demand_pp_polB_20150208b.bbc.100

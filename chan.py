@@ -13,6 +13,8 @@ class Channels:
     pvname = '{0:02d}:{1:02d}:'.format(self.BoardID, self.chanID)
     self.pv_vmon = builder.aIn(pvname+"vmon")
     self.pv_vmon.PREC = 2
+    self.pv_vmon.LOPR = 0
+    self.pv_vmon.HOPR = 2100
     self.pv_current = builder.aIn(pvname+"current")
     self.pv_vset = builder.aOut(pvname+"vset",on_update=self.write_voltage)
     self.pv_vset.PREC = 2
@@ -49,7 +51,7 @@ class Channels:
     self.pv_current.set_alarm(alarm.INVALID_ALARM,alarm.TIMEOUT_ALARM)
 
   def set_ramp(self, val):
-    command = "set ramp ({0:d},{1:d}) {2:f}".format(self.BoardID, self.chanID, val)
+    command = "set ramp ({0:d},{1:d}) {2:.0f}".format(self.BoardID, self.chanID, val)
     self.relay.put_cmd(command) 
 
   #def voltage_limits(self):

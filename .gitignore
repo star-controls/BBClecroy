@@ -1,2 +1,5 @@
 utils/lecroyLog.txt
 *.pyc
+*.py~
+bbc_data/akio/2015~
+

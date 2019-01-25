@@ -1,0 +1,12 @@
+#!/bin/gawk -f
+#
+# ./comp.awk -v diff=50 < demand.20110124.bbc > demand.20110124a.bbc
+#
+BEGIN{
+  FS=" ";
+}
+
+{ 
+  $d=$3-$8;
+  print $1,$2,$3,$4,$5," ",$6,$7,$8,$9,$10,"d=",$d;
+}

@@ -1,0 +1,4 @@
+./mod.awk -v diff=-100 < demand_pp_polB_20150129.bbc > demand_pp_polB_20150129.bbc.-100
+./mod.awk -v diff=-50  < demand_pp_polB_20150129.bbc > demand_pp_polB_20150129.bbc.-50
+./mod.awk -v diff=50   < demand_pp_polB_20150129.bbc > demand_pp_polB_20150129.bbc.50
+./mod.awk -v diff=100  < demand_pp_polB_20150129.bbc > demand_pp_polB_20150129.bbc.100

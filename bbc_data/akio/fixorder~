@@ -1,0 +1,7 @@
+#!/bin/csh
+
+set name=$argv[1]
+echo $name
+head -30 $name.txt
+tail -2 $name.txt
+tail -18 $name.txt | head -16

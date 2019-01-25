@@ -1,0 +1,24 @@
+rm 20110124.ordered.txt
+head -30 20110124.txt > 20110124.ordered.txt
+tail -2 20110124.txt >> 20110124.ordered.txt
+tail -18 20110124.txt | head -16 >> 20110124.ordered.txt
+
+rm 20110124a.ordered.txt
+head -30 20110124a.txt > 20110124a.ordered.txt
+tail -2 20110124a.txt >> 20110124a.ordered.txt
+tail -18 20110124a.txt | head -16 >> 20110124a.ordered.txt
+
+rm 20110124b.ordered.txt
+head -30 20110124b.txt > 20110124b.ordered.txt
+tail -2 20110124b.txt >> 20110124b.ordered.txt
+tail -18 20110124b.txt | head -16 >> 20110124b.ordered.txt
+
+rm 20110124c.ordered.txt
+head -30 20110124c.txt > 20110124c.ordered.txt
+tail -2 20110124c.txt >> 20110124c.ordered.txt
+tail -18 20110124c.txt | head -16 >> 20110124c.ordered.txt
+
+rm 20110124d.ordered.txt
+head -30 20110124d.txt > 20110124d.ordered.txt
+tail -2 20110124d.txt >> 20110124d.ordered.txt
+tail -18 20110124d.txt | head -16 >> 20110124d.ordered.txt

@@ -74,7 +74,7 @@ for ich in range(nch):
 #log file
 logfile = "lecroyLog.txt"
 nlog = 0 #num of lines in log file
-nmaxlog = 900 #max num of lines before log file reset
+nmaxlog = 90000 #max num of lines before log file reset
 
 #_____________________________________________________________________________
 def loopCh():
@@ -468,6 +468,11 @@ def do_show_status(rel, line):
   return True
 
 #_____________________________________________________________________________
+def do_clear():
+
+  return True
+
+#_____________________________________________________________________________
 def cmdread(rel, line):
 
   #function to decode individual commands
@@ -503,6 +508,9 @@ def cmdread(rel, line):
 
   elif line == "show status":
     stat = do_show_status(rel, line)
+
+  elif line == "clear":
+    stat = do_clear()
 
   elif line == "":
     stat = True
