@@ -1,0 +1,5 @@
+./mod.awk -v diff=-100 < aaa > aaa.-100
+./mod.awk -v diff=-50  < aaa > aaa.-50
+./mod.awk -v diff=50   < aaa > aaa.50
+./mod.awk -v diff=100  < aaa > aaa.100
+./mod.awk -v diff=150  < aaa > aaa.150

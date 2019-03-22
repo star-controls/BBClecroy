@@ -46,8 +46,10 @@ class VPDdemand:
     #alarms need to be overrided
     ff = pandas.read_csv('data/overrideVPD.csv')
     for line in range(len(ff)):
-      BoardID = ff['BoardID'][line]
-      chanID = ff['chanID'][line]
+      bd = ff['BoardID'][line]
+      ch = ff['chanID'][line]
+      self.boardList[bd].channels[ch].calc_high.put(350)
+      self.boardList[bd].channels[ch].calc_hihi.put(350)
 
   def request_change(self,val):
     if val not in self.dictionary:

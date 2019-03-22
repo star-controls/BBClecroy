@@ -36,11 +36,25 @@ class BBCdemand:
     #loop which defines board with their channels and specific voltage
     for line in f:
       linelist= line.split()
-      BoardID = int(linelist[0][1:-1])
-      chanID =  int(linelist[1][:-1])
-      voltage = float(linelist[2])
+      try:
+        BoardID = int(linelist[0][1:-1])
+        chanID =  int(linelist[1][:-1])
+        voltage = float(linelist[2])
+      except:
+        continue
+      if BoardID > 3: continue
       self.boardList[BoardID].channels[chanID].pv_vset.set(voltage)
-    
+      
+    self.set_calc_alarm(2,6)
+    self.set_calc_alarm(2,7)
+    self.set_calc_alarm(3,7)
+    self.set_calc_alarm(3,9)
+    self.set_calc_alarm(3,11)
+
+  def set_calc_alarm(self, bd,ch):
+    self.boardList[bd].channels[ch].calc_high.put(180)
+    self.boardList[bd].channels[ch].calc_hihi.put(200)
+
   def request_change(self,val):
     if val not in self.diction_ary:
       print "Number does not correlate to file in dictionary"

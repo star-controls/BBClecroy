@@ -22,7 +22,7 @@ class Channels:
     self.pv_vset.LOPR = 0
     self.calc = builder.records.calc(pvname+'calc', CALC = 'ABS(A-B)')
     self.calc.INPA = self.pv_vset.name
-    self.calc.INPB = self.pv_vmon.name
+    self.calc.INPB = self.pv_vmon.name+" MS"
     self.pv_vmon.FLNK = builder.PP(self.calc)
     self.pv_vset.FLNK = builder.PP(self.calc)
     self.hihi = 30

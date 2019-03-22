@@ -17,8 +17,8 @@ import time
 import threading
 
 
-port = "/tmp/ttyV1"
-#port = "/dev/ttyS2"
+#port = "/tmp/ttyV1"
+port = "/dev/ttyS2"
 
 #open serial connection
 relay = lecroy_com(port)

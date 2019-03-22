@@ -1,0 +1,5 @@
+./mod.awk -v diff=-100 < demand_run19_highgain_polB_20190117.bbc > demand_run19_highgain_polB_20190117.bbc.-100
+./mod.awk -v diff=-50  < demand_run19_highgain_polB_20190117.bbc > demand_run19_highgain_polB_20190117.bbc.-50
+./mod.awk -v diff=50   < demand_run19_highgain_polB_20190117.bbc > demand_run19_highgain_polB_20190117.bbc.50
+./mod.awk -v diff=100  < demand_run19_highgain_polB_20190117.bbc > demand_run19_highgain_polB_20190117.bbc.100
+
